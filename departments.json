@@ -1,0 +1,85 @@
+{
+  "generated": "2026-02-25",
+  "sites": [
+    {
+      "name": "Microbiology",
+      "url": "https://ben-tenoever.github.io/microbiology-ai-grant-tool/",
+      "faculty_count": 14,
+      "description": "Department specific team and opportunity matching site.",
+      "updated": "2026-02-25",
+      "tags": [
+        "department",
+        "core faculty",
+        "grant teams"
+      ]
+    },
+    {
+      "name": "Institute for Excellence in Health Equity",
+      "url": "https://ben-tenoever.github.io/IEHE-grant-teams/",
+      "faculty_count": null,
+      "description": "Adapted version tailored for IEHE style teams and mechanisms.",
+      "updated": "2026-02-25",
+      "tags": [
+        "institute",
+        "health equity",
+        "grant teams"
+      ]
+    },
+    {
+      "name": "Institute wide prototype",
+      "url": "https://ben-tenoever.github.io/Institute-wide/",
+      "faculty_count": 71,
+      "description": "Aggregated prototype spanning many groups as an institute scale proxy.",
+      "updated": "2026-02-25",
+      "tags": [
+        "prototype",
+        "aggregate",
+        "institute"
+      ]
+    },
+    {
+      "name": "Biochemistry and Molecular Pharmacology",
+      "url": "https://ben-tenoever.github.io/Biochemistry-Molecular-Pharmacology-grant-teams/",
+      "faculty_count": 8,
+      "description": "Placeholder link. Create this repo and replace with the final GitHub Pages URL.",
+      "updated": "2026-02-25",
+      "tags": [
+        "department",
+        "template"
+      ]
+    },
+    {
+      "name": "Institute for Systems Genetics",
+      "url": "https://ben-tenoever.github.io/ISG-grant-teams/",
+      "faculty_count": 7,
+      "description": "Placeholder link. Create this repo and replace with the final GitHub Pages URL.",
+      "updated": "2026-02-25",
+      "tags": [
+        "institute",
+        "template"
+      ]
+    },
+    {
+      "name": "Cell Biology",
+      "url": "https://ben-tenoever.github.io/Cell-Biology-grant-teams/",
+      "faculty_count": 7,
+      "description": "Placeholder link. Create this repo and replace with the final GitHub Pages URL.",
+      "updated": "2026-02-25",
+      "tags": [
+        "department",
+        "template"
+      ]
+    },
+    {
+      "name": "Pathology",
+      "url": "https://ben-tenoever.github.io/Pathology-grant-teams/",
+      "faculty_count": 6,
+      "description": "Placeholder link. Create this repo and replace with the final GitHub Pages URL.",
+      "updated": "2026-02-25",
+      "tags": [
+        "department",
+        "template"
+      ]
+    }
+  ]
+}

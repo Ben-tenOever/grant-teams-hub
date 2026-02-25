@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grant Team Builder Sites</title>
+  <style>
+    :root { --bg:#0b1020; --card:#111a33; --muted:#a8b3d1; --text:#e8ecff; --accent:#7aa2ff; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background:var(--bg); color:var(--text); }
+    header { padding:28px 18px 14px; max-width:1100px; margin:0 auto; }
+    h1 { margin:0 0 6px; font-size:24px; letter-spacing:0.2px; }
+    p { margin:8px 0; color:var(--muted); line-height:1.45; }
+    .toolbar { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    input[type="search"] { flex:1; min-width:240px; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,0.10); background:#0f1730; color:var(--text); }
+    .pill { padding:10px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.10); background:#0f1730; color:var(--muted); font-size:13px; }
+    main { max-width:1100px; margin:0 auto; padding:12px 18px 30px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:14px; }
+    a.card { display:block; text-decoration:none; color:inherit; background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:18px; padding:14px; box-shadow: 0 10px 22px rgba(0,0,0,0.20); }
+    a.card:hover { border-color: rgba(122,162,255,0.45); transform: translateY(-1px); transition: 120ms ease; }
+    .card-title { font-size:16px; margin:0 0 6px; }
+    .meta { display:flex; gap:10px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin:10px 0 0; }
+    .tag { display:inline-block; padding:4px 8px; border-radius:999px; border:1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.03); }
+    footer { max-width:1100px; margin:0 auto; padding:0 18px 34px; color:var(--muted); font-size:12px; line-height:1.5; }
+    code { background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Grant team builder sites</h1>
+    <p>
+      Central landing page linking to department or institute specific sites that propose collaborative grant teams from faculty profiles and Grants.gov opportunities.
+    </p>
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Filter by department, institute, or keyword" />
+      <div class="pill" id="summary">Loading…</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <footer>
+    <p>
+      Notes: this landing page is intentionally static for GitHub Pages. Update <code>departments.json</code> to add sites or change links.
+      If you want this to auto update, you can add a GitHub Action to regenerate the JSON on a schedule.
+    </p>
+  </footer>
+
+<script>
+  let all = [];
+  const grid = document.getElementById("grid");
+  const q = document.getElementById("q");
+  const summary = document.getElementById("summary");
+
+  function esc(s) {
+    return (s || "").toString().replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+  }
+
+  function render(items) {
+    grid.innerHTML = items.map(d => {
+      const tags = (d.tags || []).slice(0,6).map(t => `<span class="tag">${esc(t)}</span>`).join("");
+      const count = (typeof d.faculty_count === "number") ? `${d.faculty_count} faculty` : "faculty count n/a";
+      const updated = d.updated ? `updated ${esc(d.updated)}` : "";
+      return `
+        <a class="card" href="${esc(d.url)}" target="_blank" rel="noreferrer">
+          <div class="card-title">${esc(d.name)}</div>
+          <div>${esc(d.description || "")}</div>
+          <div class="meta">
+            <span class="tag">${esc(count)}</span>
+            ${updated ? `<span class="tag">${updated}</span>` : ""}
+          </div>
+          <div class="meta">${tags}</div>
+        </a>
+      `;
+    }).join("");
+    summary.textContent = `${items.length} sites`;
+  }
+
+  function applyFilter() {
+    const s = (q.value || "").toLowerCase().trim();
+    if (!s) return render(all);
+    const filtered = all.filter(d => {
+      const hay = [d.name, d.description, (d.tags || []).join(" "), d.url].join(" ").toLowerCase();
+      return hay.includes(s);
+    });
+    render(filtered);
+  }
+
+  fetch("departments.json", { cache: "no-store" })
+    .then(r => r.json())
+    .then(data => {
+      all = (data && data.sites) ? data.sites : [];
+      render(all);
+      q.addEventListener("input", applyFilter);
+    })
+    .catch(err => {
+      summary.textContent = "Failed to load departments.json";
+      console.error(err);
+    });
+</script>
+</body>
+</html>
