@@ -12,6 +12,7 @@
       --border:#e3e3ee;
       --text:#222222;
       --muted:rgba(0,0,0,.68);
+      --purple-soft: rgba(79,44,133,.08);
     }
     html,body{height:100%;}
     body{
@@ -44,82 +45,69 @@
       max-width:900px;
     }
     .section-title{
-      margin:22px 0 10px 0;
+      margin:18px 0 10px 0;
       color:var(--nyu-purple);
-      font-size:1.05rem;
+      font-size:1.02rem;
       letter-spacing:.15px;
       font-weight:720;
     }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:12px;
-    }
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:14px 14px 12px 14px;
-      text-decoration:none;
-      color:inherit;
-      transition:transform .06s ease, box-shadow .06s ease;
-    }
-    .card:hover{
-      transform:translateY(-1px);
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
-    }
-    .card-title{
-      font-weight:750;
-      letter-spacing:.15px;
-    }
-    .card-desc{
-      margin-top:8px;
-      color:var(--muted);
-      line-height:1.35;
-      font-size:.95rem;
-    }
-    .tag-row{
-      margin-top:10px;
+
+    /* buttons */
+    .btn-wrap{
       display:flex;
-      gap:8px;
       flex-wrap:wrap;
+      gap:12px;
+      align-items:stretch;
+    }
+    .btn{
+      display:inline-flex;
       align-items:center;
-    }
-    .tag{
-      display:inline-block;
-      padding:4px 10px;
+      justify-content:center;
+      text-decoration:none;
+      user-select:none;
       border-radius:999px;
-      background:var(--nyu-purple);
-      color:#fff;
-      font-size:.82rem;
-      letter-spacing:.2px;
-      font-weight:650;
-    }
-    .tag-outline{
-      display:inline-block;
-      padding:4px 10px;
-      border-radius:999px;
+      padding:12px 18px;
+      min-height:44px;
+      font-weight:720;
+      letter-spacing:.15px;
       border:1px solid var(--nyu-purple);
-      color:var(--nyu-purple);
+      color:#fff;
+      background:var(--nyu-purple);
+      transition:transform .06s ease, box-shadow .06s ease, opacity .06s ease;
+      box-shadow:0 4px 14px rgba(0,0,0,.06);
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:.92;
+      box-shadow:0 8px 18px rgba(0,0,0,.08);
+    }
+    .btn-wide{
+      width:100%;
+      border-radius:16px;
+      padding:16px 18px;
+      font-size:1.08rem;
+    }
+    .btn-secondary{
       background:#fff;
-      font-size:.82rem;
-      letter-spacing:.2px;
-      font-weight:650;
+      color:var(--nyu-purple);
+      border:1px solid rgba(79,44,133,.55);
+      box-shadow:none;
     }
-    footer{
-      margin-top:28px;
-      padding:10px 0 24px 0;
-      color:var(--muted);
-      font-size:.9rem;
+    .btn-secondary:hover{
+      background:var(--purple-soft);
+      opacity:1;
+      box-shadow:none;
     }
+
     .note{
-      margin-top:10px;
+      margin-top:16px;
       background:#fff;
       border:1px solid var(--border);
       border-radius:12px;
       padding:12px 14px;
       line-height:1.4;
       color:var(--muted);
+      font-size:.92rem;
     }
     code{
       background:rgba(79,44,133,.07);
@@ -136,99 +124,40 @@
     <div class="container">
       <h1 class="title">NYU Grant Teams Hub</h1>
       <div class="subtitle">
-        Central index for department and institute team building sites. Department sites are scoped to faculty within that group.
-        Institute wide supports cross group team building.
+        Central index for department and institute team building sites. Department sites are scoped to faculty within that group. Institute wide supports cross group team building.
       </div>
     </div>
   </header>
 
   <main class="container">
+    <div class="section-title">Institute wide</div>
+    <div class="btn-wrap">
+      <a class="btn btn-wide" href="https://ben-tenoever.github.io/Institute-wide/">Institute wide</a>
+    </div>
+
     <div class="section-title">Primary sites</div>
-    <div class="grid">
-      <a class="card" href="https://ben-tenoever.github.io/microbiology-ai-grant-tool/">
-        <div class="card-title">Microbiology</div>
-        <div class="card-desc">Scoped team building within Microbiology.</div>
-        <div class="tag-row"><span class="tag">Primary</span><span class="tag-outline">Scoped</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/IEHE-grant-teams/">
-        <div class="card-title">IEHE</div>
-        <div class="card-desc">Scoped team building within IEHE.</div>
-        <div class="tag-row"><span class="tag">Primary</span><span class="tag-outline">Scoped</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/Cell-Biology-grant-teams/">
-        <div class="card-title">Cell Biology</div>
-        <div class="card-desc">Scoped team building within Cell Biology.</div>
-        <div class="tag-row"><span class="tag">Primary</span><span class="tag-outline">Scoped</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/Pathology-grant-teams/">
-        <div class="card-title">Pathology</div>
-        <div class="card-desc">Scoped team building within Pathology.</div>
-        <div class="tag-row"><span class="tag">Primary</span><span class="tag-outline">Scoped</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/Biochemistry-Molecular-Pharmacology-grant-teams/">
-        <div class="card-title">Biochemistry</div>
-        <div class="card-desc">Scoped team building within Biochemistry.</div>
-        <div class="tag-row"><span class="tag">Primary</span><span class="tag-outline">Scoped</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/ISG-grant-teams/">
-        <div class="card-title">Institute for Systems Genetics</div>
-        <div class="card-desc">Scoped team building within ISG.</div>
-        <div class="tag-row"><span class="tag">Primary</span><span class="tag-outline">Scoped</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/Institute-wide/">
-        <div class="card-title">Institute wide</div>
-        <div class="card-desc">Cross group team building across the full roster.</div>
-        <div class="tag-row"><span class="tag">Primary</span><span class="tag-outline">Cross group</span></div>
-      </a>
+    <div class="btn-wrap">
+      <a class="btn" href="https://ben-tenoever.github.io/microbiology-ai-grant-tool/">Microbiology</a>
+      <a class="btn" href="https://ben-tenoever.github.io/IEHE-grant-teams/">IEHE</a>
+      <a class="btn" href="https://ben-tenoever.github.io/Cell-Biology-grant-teams/">Cell Biology</a>
+      <a class="btn" href="https://ben-tenoever.github.io/Pathology-grant-teams/">Pathology</a>
+      <a class="btn" href="https://ben-tenoever.github.io/Biochemistry-Molecular-Pharmacology-grant-teams/">Biochemistry</a>
+      <a class="btn" href="https://ben-tenoever.github.io/ISG-grant-teams/">ISG</a>
     </div>
 
     <div class="section-title">Secondary sites</div>
-    <div class="grid">
-      <a class="card" href="https://ben-tenoever.github.io/Neuroscience-grant-teams/">
-        <div class="card-title">Neuroscience</div>
-        <div class="card-desc">Faculty profiles, with team building routed to Institute wide for small rosters.</div>
-        <div class="tag-row"><span class="tag-outline">Secondary</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/CHGG-grant-teams/">
-        <div class="card-title">Center for Human Genetics and Genomics</div>
-        <div class="card-desc">Faculty profiles, with team building routed to Institute wide for small rosters.</div>
-        <div class="tag-row"><span class="tag-outline">Secondary</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/Medicine-grant-teams/">
-        <div class="card-title">Medicine</div>
-        <div class="card-desc">Faculty profiles, with team building routed to Institute wide for small rosters.</div>
-        <div class="tag-row"><span class="tag-outline">Secondary</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/Ophthalmology-grant-teams/">
-        <div class="card-title">Ophthalmology</div>
-        <div class="card-desc">Faculty profiles, with team building routed to Institute wide for small rosters.</div>
-        <div class="tag-row"><span class="tag-outline">Secondary</span></div>
-      </a>
-
-      <a class="card" href="https://ben-tenoever.github.io/Pop-Health-grant-teams/">
-        <div class="card-title">Population Health</div>
-        <div class="card-desc">Faculty profiles, with team building routed to Institute wide for small rosters.</div>
-        <div class="tag-row"><span class="tag-outline">Secondary</span></div>
-      </a>
+    <div class="btn-wrap">
+      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/Neuroscience-grant-teams/">Neuroscience</a>
+      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/CHGG-grant-teams/">CHGG</a>
+      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/Medicine-grant-teams/">Medicine</a>
+      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/Ophthalmology-grant-teams/">Ophthalmology</a>
+      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/Pop-Health-grant-teams/">Pop Health</a>
     </div>
 
     <div class="note">
-      Tip for troubleshooting: if you just pushed changes, use a private window or hard refresh since GitHub Pages caching can lag.
-      For any site, the canonical datasets live at <code>/data/faculty_index.json</code> and <code>/data/teams.json</code> when present.
+      Tip: if you just pushed changes, use a private window or hard refresh since GitHub Pages caching can lag.
+      Canonical datasets live at <code>/data/faculty_index.json</code> and <code>/data/teams.json</code> when present.
     </div>
-
-    <footer class="container">
-      Maintained by the Galaxy team builder pipeline.
-    </footer>
   </main>
 </body>
 </html>
