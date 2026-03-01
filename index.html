@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NYU Grant Teams Hub</title>
+  <title>AI Grant and Collaboration Initiative</title>
   <style>
     :root{
       --nyu-purple:#4F2C85;
       --bg:#f5f5f7;
+      --card:#ffffff;
+      --border:#e3e3ee;
       --text:#222222;
       --muted:rgba(0,0,0,.68);
-      --border:#e3e3ee;
       --purple-soft: rgba(79,44,133,.08);
     }
     body{
@@ -20,91 +21,134 @@
       color:var(--text);
     }
     header{
-      background:#fff;
+      background:#ffffff;
       border-bottom:5px solid var(--nyu-purple);
     }
     .container{
-      max-width:1020px;
+      max-width:1100px;
       margin:0 auto;
       padding:18px 16px;
     }
     .title{
       margin:0;
       color:var(--nyu-purple);
-      font-size:1.45rem;
+      font-size:1.55rem;
       line-height:1.2;
-      font-weight:750;
+      font-weight:760;
       letter-spacing:.2px;
     }
     .subtitle{
       margin-top:6px;
       color:var(--muted);
       line-height:1.35;
-      max-width:900px;
     }
-    .section-title{
-      margin:18px 0 10px 0;
-      color:var(--nyu-purple);
-      font-size:1.02rem;
-      font-weight:720;
-      letter-spacing:.15px;
-    }
-    .btn-wrap{
+    .sitebar{
+      margin-top:14px;
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
-      align-items:stretch;
+      gap:8px;
+      align-items:center;
     }
-    .btn{
+    .pillbtn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       text-decoration:none;
-      user-select:none;
       border-radius:999px;
-      padding:12px 18px;
-      min-height:44px;
-      font-weight:720;
+      padding:8px 12px;
+      border:1px solid rgba(79,44,133,.55);
+      color:var(--nyu-purple);
+      background:#fff;
+      font-weight:680;
+      letter-spacing:.1px;
+      white-space:nowrap;
+    }
+    .pillbtn:hover{
+      background:var(--purple-soft);
+    }
+    .pillbtn.primary{
+      background:var(--nyu-purple);
+      color:#fff;
+      border:1px solid var(--nyu-purple);
+    }
+    .pillbtn.primary:hover{
+      opacity:.92;
+      background:var(--nyu-purple);
+    }
+    main{ padding:18px 0 26px 0; }
+    h2{
+      margin:18px 0 10px 0;
+      color:var(--nyu-purple);
+      font-size:1.12rem;
+      font-weight:740;
       letter-spacing:.15px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:16px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:12px;
+    }
+    ul{
+      margin:10px 0 0 0;
+      padding-left:18px;
+      line-height:1.5;
+      color:var(--muted);
+    }
+    .cta-row{
+      margin-top:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      border-radius:12px;
+      padding:10px 14px;
       border:1px solid var(--nyu-purple);
       color:#fff;
       background:var(--nyu-purple);
-      transition:transform .06s ease, box-shadow .06s ease, opacity .06s ease;
-      box-shadow:0 4px 14px rgba(0,0,0,.06);
+      font-weight:720;
       white-space:nowrap;
     }
-    .btn:hover{
-      transform:translateY(-1px);
-      opacity:.92;
-      box-shadow:0 8px 18px rgba(0,0,0,.08);
-    }
-    .btn-wide{
-      width:100%;
-      border-radius:16px;
-      padding:16px 18px;
-      font-size:1.08rem;
-      white-space:normal;
-    }
-    .btn-secondary{
+    .cta:hover{ opacity:.92; }
+    .cta.secondary{
       background:#fff;
       color:var(--nyu-purple);
       border:1px solid rgba(79,44,133,.55);
-      box-shadow:none;
     }
-    .btn-secondary:hover{
-      background:var(--purple-soft);
-      opacity:1;
-      box-shadow:none;
+    .cta.secondary:hover{ background:var(--purple-soft); opacity:1; }
+    .linklist{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:10px;
     }
-    .note{
-      margin-top:16px;
+    .linkitem{
+      display:block;
+      text-decoration:none;
+      color:inherit;
       background:#fff;
       border:1px solid var(--border);
       border-radius:12px;
       padding:12px 14px;
-      line-height:1.4;
+    }
+    .linkitem:hover{ background:rgba(79,44,133,.06); }
+    .linktitle{ font-weight:720; color:var(--text); }
+    .linkdesc{ margin-top:6px; color:var(--muted); line-height:1.35; }
+    footer{
+      margin-top:18px;
       color:var(--muted);
       font-size:.92rem;
+      line-height:1.35;
     }
     code{
       background:rgba(79,44,133,.07);
@@ -119,41 +163,133 @@
 <body>
   <header>
     <div class="container">
-      <h1 class="title">NYU Grant Teams Hub</h1>
-      <div class="subtitle">
-        Central index for department and institute team building sites. Department sites are scoped to faculty within that group. Institute wide supports cross group team building.
+      <div class="title">AI Grant and Collaboration Initiative</div>
+      <div class="subtitle">NYU Grossman School of Medicine</div>
+
+      <div class="sitebar" aria-label="Sites">
+        <a class="pillbtn primary" href="https://ben-tenoever.github.io/Institute-wide/">Institute-wide</a>
+
+        <a class="pillbtn" href="https://ben-tenoever.github.io/microbiology-ai-grant-tool/">Microbiology</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/IEHE-grant-teams/">IEHE</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/Cell-Biology-grant-teams/">Cell Biology</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/Pathology-grant-teams/">Pathology</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/Biochemistry-Molecular-Pharmacology-grant-teams/">Biochemistry</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/ISG-grant-teams/">ISG</a>
+
+        <a class="pillbtn" href="https://ben-tenoever.github.io/Neuroscience-grant-teams/">Neuroscience</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/CHGG-grant-teams/">CHGG</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/Medicine-grant-teams/">Medicine</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/Ophthalmology-grant-teams/">Ophthalmology</a>
+        <a class="pillbtn" href="https://ben-tenoever.github.io/Pop-Health-grant-teams/">Pop Health</a>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <div class="section-title">Institute wide</div>
-    <div class="btn-wrap">
-      <a class="btn btn-wide" href="https://ben-tenoever.github.io/Institute-wide/">Institute-wide</a>
-    </div>
+  <main>
+    <div class="container">
+      <h2>What this tool does</h2>
+      <div class="card">
+        <div style="color:var(--muted); line-height:1.45;">
+          This portal organizes faculty research strengths across multiple communities and uses AI-generated matches to suggest competitive collaborative teams aligned with federal opportunities. Department and program sites are scoped to their own rosters, while the Institute-wide site supports cross-group team building.
+        </div>
+        <ul>
+          <li>Maps scientific strengths across basic, translational, and population science.</li>
+          <li>Provides curated two-investigator and multi-investigator team suggestions.</li>
+          <li>Routes keyword-based exploration through unified faculty profiles.</li>
+        </ul>
+        <div class="cta-row">
+          <a class="cta" href="https://ben-tenoever.github.io/Institute-wide/faculty.html">Institute-wide faculty profiles</a>
+          <a class="cta secondary" href="https://ben-tenoever.github.io/Institute-wide/">Go to Institute-wide</a>
+        </div>
+      </div>
 
-    <div class="section-title">Primary sites</div>
-    <div class="btn-wrap">
-      <a class="btn" href="https://ben-tenoever.github.io/microbiology-ai-grant-tool/">Microbiology</a>
-      <a class="btn" href="https://ben-tenoever.github.io/IEHE-grant-teams/">IEHE</a>
-      <a class="btn" href="https://ben-tenoever.github.io/Cell-Biology-grant-teams/">Cell Biology</a>
-      <a class="btn" href="https://ben-tenoever.github.io/Pathology-grant-teams/">Pathology</a>
-      <a class="btn" href="https://ben-tenoever.github.io/Biochemistry-Molecular-Pharmacology-grant-teams/">Biochemistry</a>
-      <a class="btn" href="https://ben-tenoever.github.io/ISG-grant-teams/">ISG</a>
-    </div>
+      <h2>Faculty profiles</h2>
+      <div class="card">
+        <div style="color:var(--muted); line-height:1.45;">
+          A consolidated view of research areas, model systems, experimental capabilities, and publications (where available) across communities.
+        </div>
+        <ul>
+          <li>Review lab representation and scoped membership.</li>
+          <li>Identify natural collaborators using shared themes and approaches.</li>
+          <li>Use term filters to quickly find experts across domains.</li>
+        </ul>
+        <div class="cta-row">
+          <a class="cta" href="https://ben-tenoever.github.io/Institute-wide/faculty.html">Browse Institute-wide faculty</a>
+          <a class="cta secondary" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=organoids">Example term search</a>
+        </div>
+      </div>
 
-    <div class="section-title">Secondary sites</div>
-    <div class="btn-wrap">
-      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/Neuroscience-grant-teams/">Neuroscience</a>
-      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/CHGG-grant-teams/">CHGG</a>
-      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/Medicine-grant-teams/">Medicine</a>
-      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/Ophthalmology-grant-teams/">Ophthalmology</a>
-      <a class="btn btn-secondary" href="https://ben-tenoever.github.io/Pop-Health-grant-teams/">Pop Health</a>
-    </div>
+      <h2>Resources and model systems</h2>
+      <div class="card">
+        <div style="color:var(--muted); line-height:1.45;">
+          These links jump to the Institute-wide term filter and surface faculty profiles where the term appears in research keywords, synopsis, or tags.
+        </div>
 
-    <div class="note">
-      Tip: if you just pushed changes, use a private window or hard refresh since GitHub Pages caching can lag.
-      Canonical datasets live at <code>/data/faculty_index.json</code> and <code>/data/teams.json</code> when present.
+        <div class="linklist" style="margin-top:12px;">
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=organoids">
+            <div class="linktitle">Organoids and assembloids</div>
+            <div class="linkdesc">Human organoids, assembloids, disease modeling and engineering</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=mouse">
+            <div class="linktitle">Mouse models</div>
+            <div class="linkdesc">In vivo systems, genetics, infection, cancer, physiology</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=genome%20writing">
+            <div class="linktitle">Genome writing and synthetic genomics</div>
+            <div class="linkdesc">Large DNA assembly, landing pads, humanization models</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=metabolomics">
+            <div class="linktitle">Metabolomics and mass spectrometry</div>
+            <div class="linkdesc">LC-MS, quantitative metabolite profiling, informatics</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=implementation">
+            <div class="linktitle">Implementation science and health equity</div>
+            <div class="linkdesc">Pragmatic trials, health systems, community-engaged research</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=imaging">
+            <div class="linktitle">Advanced imaging</div>
+            <div class="linkdesc">Confocal, live imaging, single particle tracking, microscopy</div>
+          </a>
+        </div>
+      </div>
+
+      <h2>Experimental approaches</h2>
+      <div class="card">
+        <div style="color:var(--muted); line-height:1.45;">
+          The initiative spans experimental platforms from structural biology to systems immunology, synthetic genomics, and implementation research. These links surface faculty who routinely use each approach.
+        </div>
+
+        <div class="linklist" style="margin-top:12px;">
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=cryo">
+            <div class="linktitle">Structural biology</div>
+            <div class="linkdesc">Cryo-EM, crystallography, membrane proteins, complexes</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=single-cell">
+            <div class="linktitle">Single-cell and high-dimensional profiling</div>
+            <div class="linkdesc">scRNA-seq, multi-omics, immune profiling</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=crispr">
+            <div class="linktitle">CRISPR and genome engineering</div>
+            <div class="linkdesc">Perturbation, editing, screening, disease models</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=proteomics">
+            <div class="linktitle">Proteomics and systems analysis</div>
+            <div class="linkdesc">Quantitative proteomics, multi-omics integration</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=trial">
+            <div class="linktitle">Clinical and pragmatic trials</div>
+            <div class="linkdesc">Cluster trials, cohort studies, comparative effectiveness</div>
+          </a>
+          <a class="linkitem" href="https://ben-tenoever.github.io/Institute-wide/faculty_term.html?term=vector">
+            <div class="linktitle">Vector and delivery engineering</div>
+            <div class="linkdesc">Viral vectors, delivery platforms, immunoprophylaxis</div>
+          </a>
+        </div>
+      </div>
+
+      <footer class="container">
+        Tip: use a private window or hard refresh after pushes, GitHub Pages caching can lag. Canonical datasets live at <code>/data/faculty_index.json</code> and <code>/data/teams.json</code> when present.
+      </footer>
     </div>
   </main>
 </body>
